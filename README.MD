@@ -33,6 +33,8 @@
 
    ./chat_app <port> 
 
+![alt text](image.png)
+
 Ex : ./chat_app 8080
 
 *Chạy Client*
@@ -44,6 +46,8 @@ Ex : ./chat_app 8080
    connect <server_ip> <port>
 
 Ex : connect 127.0.0.1 8080
+
+![alt text](image-1.png)
 
 2.  Hiển thị thông tin của Server:
 
