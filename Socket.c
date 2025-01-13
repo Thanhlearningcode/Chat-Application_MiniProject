@@ -1,6 +1,6 @@
 /**************************************************************************************************
  *  Author: Nguyen Van Thanh
- *  Created on: 1/13/2025
+ *  Created on: 1/09/2025
  *  Contact: https://thanhlearningcode.github.io/Myprofile/
  *  Description: This file contains implementations of TCP socket functions such as creating, binding,
  *  listening, accepting, connecting, sending, receiving, and closing connections.
@@ -13,9 +13,9 @@
  *  Tạo socket TCP
  **************************************************************************************************/
 int TCP_CreateSocket(void) {
-    int sock_fd = socket(AF_INET, SOCK_STREAM, 0);
+    int sock_fd = socket(AF_INET, SOCK_STREAM, 0);  /* internetwork: UDP, TCP, etc. */
     if (sock_fd < 0) {
-        perror("Error creating socket");
+        perror("Errror to Create Socket");
         return -1;
     }
     return sock_fd;
@@ -32,7 +32,7 @@ int TCP_BindSocket(int sock_fd, int port) {
     server_addr.sin_addr.s_addr = INADDR_ANY;
 
     if (bind(sock_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
-        perror("Error binding socket");
+        perror("Error in binding Socket");
         return -1;
     }
     return 0;
@@ -43,7 +43,7 @@ int TCP_BindSocket(int sock_fd, int port) {
  **************************************************************************************************/
 int TCP_ListenForConnection(int sock_fd) {
     if (listen(sock_fd, 1) < 0) {
-        perror("Error listening on socket");
+        perror("Error to listen on Socket");
         return -1;
     }
     return 0;
@@ -57,12 +57,12 @@ int TCP_AcceptConnection(int sock_fd, int *port, char *client_ip) {
     socklen_t client_len = sizeof(client_addr);
     int client_sockfd = accept(sock_fd, (struct sockaddr *)&client_addr, &client_len);
     if (client_sockfd < 0) {
-        perror("Error accepting connection");
+        perror("Error to accept the Connection");
         return -1;
     }
 
     if (inet_ntop(AF_INET, &client_addr.sin_addr, client_ip, INET_ADDRSTRLEN) == NULL) {
-        perror("Error converting client IP");
+        perror("Error to convert the Client IP");
         close(client_sockfd);
         return -1;
     }

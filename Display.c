@@ -3,7 +3,7 @@
  *  -------------------------------------------------------------------------------------------------------------------
  *  \verbatim
  *  Author: Nguyen Van Thanh
- *  Created on: 1/13/2025
+ *  Created on: 1/09/2025
  *  Contact: https://thanhlearningcode.github.io/Myprofile/
  *  This software provides a demo chat application that supports multiple commands.
  *  \endverbatim

@@ -1,28 +1,38 @@
+# Biến để chỉ định trình biên dịch và các cờ biên dịch
 CC = gcc
 CFLAGS = -Wall -pthread
 
-# Tệp nguồn
-SRC =  Socket.c Communication.c Display.c main.c
+# Các tệp nguồn
+SRC = Socket.c Communication.c Display.c main.c Thread.c
 
-# Tệp đối tượng
+# Các tệp đối tượng tương ứng với các tệp nguồn
 OBJ = $(SRC:.c=.o)
 
-# Tên của tệp thực thi
+# Tên tệp thực thi cuối cùng
 TARGET = chat_app
 
-# Mục tiêu mặc định để tạo tệp thực thi
+# Mục tiêu mặc định để biên dịch tệp thực thi
 all: $(TARGET)
 
+# Quy tắc để tạo tệp thực thi từ các tệp đối tượng
 $(TARGET): $(OBJ)
 	$(CC) $(OBJ) -o $(TARGET) $(CFLAGS)
 
-# Quy tắc biên dịch .c thành .o
+# Quy tắc biên dịch các tệp nguồn thành các tệp đối tượng
 %.o: %.c
 	$(CC) -c $< -o $@
 
-# Dọn dẹp tệp đối tượng và tệp thực thi
+# Mục tiêu dọn dẹp: Xóa các tệp đối tượng và tệp thực thi
 clean:
-	rm -f *.o $(TARGET)
+	rm -f $(OBJ) $(TARGET)
 
-# Tùy chọn: Làm lại (clean và build lại)
+# Mục tiêu rebuild: Dọn dẹp và biên dịch lại
 rebuild: clean all
+
+# Mục tiêu giúp đỡ để người dùng biết các lệnh có sẵn trong Makefile
+help:
+	@echo "Available targets:"
+	@echo "  all       - Build the project (default target)"
+	@echo "  clean     - Remove object files and executable"
+	@echo "  rebuild   - Clean and rebuild the project"
+	@echo "  help      - Show this help message"

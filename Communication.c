@@ -1,6 +1,6 @@
 /**************************************************************************************************
  *  Author: Nguyen Van Thanh
- *  Created on: 1/13/2025
+ *  Created on: 1/09/2025
  *  Contact: https://thanhlearningcode.github.io/Myprofile/
  *  Description: This code contains functions for managing a simple server-client communication,
  *  including functions for creating sockets, accepting and handling connections, sending and 
