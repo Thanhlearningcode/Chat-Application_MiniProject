@@ -1,6 +1,6 @@
 /**************************************************************************************************
  *  Author: Nguyen Van Thanh
- *  Created on: 1/13/2025
+ *  Created on: 1/09/2025
  *  Contact: https://thanhlearningcode.github.io/Myprofile/
  *  Description: This header file contains declarations for functions that manage server-client
  *  communication, including socket creation, connection handling, message sending/receiving,
