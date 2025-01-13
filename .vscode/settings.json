@@ -60,6 +60,7 @@
     "communication.h": "c",
     "display.h": "c",
     "string.h": "c",
-    "socket.h": "c"
+    "socket.h": "c",
+    "pthread.h": "c"
   }
 }

@@ -11,8 +11,8 @@
  * @see     Socket.h, Communication.h, Display.h
  */
 
-#include "Socket.h"         
-#include "Communication.h"   
+#include "Socket.h"
+#include "Communication.h"
 #include "Display.h"        
 #include <pthread.h>        
 #include <string.h>          /**< String manipulation functions like strtok, strcmp, strcspn */
