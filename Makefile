@@ -11,7 +11,7 @@ SRC = Src/Socket.c Src/Communication.c Src/Display.c Src/main.c Src/Thread.c
 OBJ = $(SRC:.c=.o)
 
 # Tên tệp thực thi (output file)
-TARGET = chat_app
+TARGET = chat
 
 # Mục tiêu mặc định để tạo tệp thực thi
 all: $(TARGET)
@@ -20,13 +20,13 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CC) $(OBJ) -o $(TARGET) $(CFLAGS)
 
-# Quy tắc biên dịch các tệp .c thành các tệp .o
+#  biên dịch các tệp .c thành các tệp .o
 %.o: %.c
 	$(CC) -c $< -o $@ $(CFLAGS)
 
-# Quy tắc dọn dẹp (remove các tệp đối tượng và tệp thực thi)
+# Remove
 clean:
 	rm -f Src/*.o $(TARGET)  # Xóa các tệp .o trong thư mục Src và tệp thực thi
 
-# Tùy chọn: Làm lại (clean và build lại)
+# Rebuild trương trình
 rebuild: clean all

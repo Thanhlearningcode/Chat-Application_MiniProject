@@ -40,6 +40,8 @@ int CreateAcceptConnectionThread(int listen_fd) {
     int result = pthread_create(&accept_thread, NULL, accept_connection_thread, &listen_fd);
     if (result != 0) {
         perror("Error creating accept connection thread");
+
+     /* Note *Do sử dụng con trỏ void nên phải ép kiểu ko là lỗi nhé mặc dù kiểu trả về là int*/
         return (int)result;  /**< Trả về lỗi nếu tạo luồng không thành công */
     }
     
@@ -57,7 +59,8 @@ int CreateClientHandlerThread(void) {
     int result = pthread_create(&handler_thread, NULL, client_handler_thread, NULL);
     if (result != 0) {
         perror("Error creating client handler thread");
-        /* Note *Do sử dụng con trỏ void nên phải ép kiểu ko là lỗi nhé mặc dù kiểu trả về là int*/
+
+    /* Note *Do sử dụng con trỏ void nên phải ép kiểu ko là lỗi nhé mặc dù kiểu trả về là int*/
         return (int)result;  /**< Trả về lỗi nếu tạo luồng không thành công */
     }
     

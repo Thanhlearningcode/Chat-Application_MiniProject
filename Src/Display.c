@@ -24,7 +24,7 @@ typedef struct {
  *  ứng dụng chat demo.
  **************************************************************************************************/
 static const Command_t commands[] = {
-    {"help",                           "Display user interface options"                               },
+    {"help",                           "Display user interface options"          },
     {"myIp",                           "Display the server's IP address"         },
     {"myPort",                         "Display the server's port"               },
     {"connect <ip> <port>",            "Connect to a remote server"              },
