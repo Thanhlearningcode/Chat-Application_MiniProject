@@ -31,12 +31,14 @@
 pthread_mutex_t client_list_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 
+
 int main(int argc, char *argv[]) {
    //  int port, server_fd;
 
-    if (argc < 2) {
-        printf("Exit with error due to incorrect number of arguments    \n");
-        return 1;
+    if (argc <=1) {
+        printf("Error: Missing required arguments. Please provide the correct arguments to run the program.\n");
+
+        return -1;
     }
 
     int port = atoi(argv[1]);  /**< Port number for the server */
@@ -47,6 +49,7 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 atexit(GoodBye_Custommer);
+
 /**
  * @brief Create the thread to accept incoming connections.
  */
@@ -54,6 +57,7 @@ atexit(GoodBye_Custommer);
         perror("Failed to create accept connection thread");
         return -1;
     }
+
 /**
  * @brief Create the thread to handle client communication.
  */
@@ -85,49 +89,86 @@ atexit(GoodBye_Custommer);
 
         pthread_mutex_lock(&client_list_mutex);  /**< Lock the mutex to protect the shared client list */
 
-        if (strcmp(command, "help") == 0) {
-            DisplayMenu();  /**< Show available commands to the user */
-        } else if (strcmp(command, "myIp") == 0 || strcmp(command, "myPort") == 0) {
-            Get_MyIp(server_fd);  /**< Display the server's IP or port */
-        } else if (strcmp(command, "connect") == 0) {
-            char *ip = strtok(NULL, " ");  /**< Extract the IP address */
-            char *port = strtok(NULL, " ");  /**< Extract the port number */
-            if (ip == NULL || port == NULL) {
-                printf("Usage: connect <ip> <port>\n");
-            } else {
-                int client_fd = Create_ClientSocket(ip, atoi(port));  /**< Create a client socket */
-                if (client_fd < 0) {
-                    printf("Failed to connect to %s:%d\n", ip, atoi(port));
+       switch (command[0]) {
+            case 'h':  // 'help'
+                if (strcmp(command, "help") == 0 || strcmp(command, "myPort") == 0) {
+                    DisplayMenu();  /**< Show available commands to the user */
                 }
-            }
-        } else if (strcmp(command, "list") == 0) {
-            List_AllConnections();  /**< List all active client connections */
-        } else if (strcmp(command, "terminate") == 0) {
-            char *connection_id = strtok(NULL, " ");  /**< Extract the connection ID */
-            if (connection_id == NULL) {
-                printf("Usage: terminate <connection id>\n");
-            } else {
-                Remove_Client(atoi(connection_id));  /**< Terminate the client connection with the specified ID */
-            }
-        } else if (strcmp(command, "send") == 0) {
-            char *connection_id = strtok(NULL, " ");  /**< Extract the connection ID */
-            char *message = strtok(NULL, "");  /**< Extract the message to send */
-            if (connection_id == NULL || message == NULL) {
-                printf("Usage: send <connection id> <message>\n");
-            } else {
-                Send_ToClient(message, atoi(connection_id));  /**< Send the message to the client with the specified ID */
-            }
-        } else if (strcmp(command, "exit") == 0) {
-            Remove_AllClients();  /**< Remove all connected clients */
-            TCP_CloseConnection(server_fd);  /**< Close the server socket */
-            pthread_mutex_unlock(&client_list_mutex);  /**< Unlock the mutex */
-            exit(0);  /**< Exit the program */
-        } else {
-            printf("Invalid command. Type 'help' for a list of commands.\n");
+                break;
+
+            case 'm':  // 'myIp' or 'myPort'
+                if (strcmp(command, "myIp") == 0 || strcmp(command, "myPort") == 0) {
+                    Get_MyIp(server_fd);  /**< Display the server's IP or port */
+                    printf("\n Gõ Phím ở đây \n");
+                }
+                break;
+
+            case 'c':  // 'connect'
+                if (strcmp(command, "connect") == 0) {
+                    char *ip = strtok(NULL, " ");  /**< Extract the IP address */
+                    char *port = strtok(NULL, " ");  /**< Extract the port number */
+                    if (ip == NULL || port == NULL) {
+                        printf("Usage: connect <ip> <port>\n");
+                        printf("\n Gõ Phím ở đây : \n");
+                    } else {
+                        int client_fd = Create_ClientSocket(ip, atoi(port));  /**< Create a client socket */
+                        if (client_fd < 0) {
+                            printf("Failed to connect to %s:%d\n", ip, atoi(port));
+                            printf("\n Gõ Phím ở đây : \n");
+                        }
+                    }
+                }
+                break;
+
+            case 'l':  // 'list'
+                if (strcmp(command, "list") == 0) {
+                    List_AllConnections();  /**< List all active client connections */
+                    printf("\n Gõ Phím ở đây : \n");
+                }
+                break;
+
+            case 't':  // 'terminate'
+                if (strcmp(command, "terminate") == 0) {
+                    char *connection_id = strtok(NULL, " ");  /**< Extract the connection ID */
+                    if (connection_id == NULL) {
+                        printf("Usage: terminate <connection id>\n");
+                        printf("\n Gõ Phím ở đây : \n");
+                    } else {
+                        Remove_Client(atoi(connection_id));  /**< Terminate the client connection with the specified ID */
+                    }
+                }
+                break;
+
+            case 's':  // 'send'
+                if (strcmp(command, "send") == 0) {
+                    char *connection_id = strtok(NULL, " ");  /**< Extract the connection ID */
+                    char *message = strtok(NULL, "");  /**< Extract the message to send */
+                    if (connection_id == NULL || message == NULL) {
+                        printf("Usage: send <connection id> <message>\n");
+                        printf("\n Gõ Phím ở đây : \n");
+                    } else {
+                        Send_ToClient(message, atoi(connection_id));  /**< Send the message to the client with the specified ID */
+                    }
+                }
+                break;
+
+            case 'e':  // 'exit'
+                if (strcmp(command, "exit") == 0) {
+                    Remove_AllClients();  /**< Remove all connected clients */
+                    TCP_CloseConnection(server_fd);  /**< Close the server socket */
+                    pthread_mutex_unlock(&client_list_mutex);  /**< Unlock the mutex */
+                    exit(0);  /**< Exit the program */
+                }
+                break;
+
+            default:
+                printf("Invalid command. Type 'help' for a list of commands.\n");
+                printf("\n Gõ Phím ở đây : \n");
+                break;
         }
 
         pthread_mutex_unlock(&client_list_mutex);  /**< Unlock the mutex after processing the command */
     }
 
-    return 0;  /**< Return from the main function */
+    return 0;  
 }

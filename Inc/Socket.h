@@ -33,7 +33,7 @@
  * 
  * @return The socket file descriptor, or -1 if the creation failed.
  */
-int TCP_CreateSocket(void);
+int TCP_CreateSocket (void);
 
 /**
  * @brief Bind the socket to a specific port
@@ -44,7 +44,7 @@ int TCP_CreateSocket(void);
  * @param port The port number to bind to.
  * @return 0 on success, -1 on failure.
  */
-int TCP_BindSocket(int sock_fd, int port);
+int TCP_BindSocket  (int sock_fd, int port);
 
 /**
  * @brief Start listening for incoming connections
@@ -54,7 +54,7 @@ int TCP_BindSocket(int sock_fd, int port);
  * @param sock_fd The socket file descriptor.
  * @return 0 on success, -1 on failure.
  */
-int TCP_ListenForConnection(int sock_fd);
+int TCP_ListenForConnection (int sock_fd);
 
 /**
  * @brief Accept a new client connection
@@ -66,7 +66,7 @@ int TCP_ListenForConnection(int sock_fd);
  * @param client_ip The IP address of the connected client.
  * @return The new socket file descriptor for the client connection, or -1 on failure.
  */
-int TCP_AcceptConnection(int sock_fd, int *port, char *client_ip);
+int TCP_AcceptConnection   (int sock_fd, int *port, char *client_ip);
 
 /**
  * @brief Connect to a remote server
@@ -78,7 +78,7 @@ int TCP_AcceptConnection(int sock_fd, int *port, char *client_ip);
  * @param port The port number of the server.
  * @return 0 on success, -1 on failure.
  */
-int TCP_Connect(int sock_fd, const char *ip, int port);
+int TCP_Connect           (int sock_fd, const char *ip, int port);
 
 /**
  * @brief Send a message to a connected client or server
@@ -89,7 +89,7 @@ int TCP_Connect(int sock_fd, const char *ip, int port);
  * @param message The message to send.
  * @return The number of bytes sent, or -1 on failure.
  */
-int TCP_SendMessage(int sock_fd, const char *message);
+int TCP_SendMessage       (int sock_fd, const char *message);
 
 /**
  * @brief Receive a message from a connected client or server
@@ -101,7 +101,7 @@ int TCP_SendMessage(int sock_fd, const char *message);
  * @param size The size of the buffer.
  * @return The number of bytes received, or -1 on failure.
  */
-int TCP_ReceiveMessage(int sock_fd, char *buffer, uint32_t size);
+int TCP_ReceiveMessage    (int sock_fd, char *buffer, uint32_t size);
 
 /**
  * @brief Close the socket connection
@@ -111,6 +111,6 @@ int TCP_ReceiveMessage(int sock_fd, char *buffer, uint32_t size);
  * @param sock_fd The socket file descriptor.
  * @return 0 on success, -1 on failure.
  */
-int TCP_CloseConnection(int sock_fd);
+int TCP_CloseConnection   (int sock_fd);
 
 #endif /* SOCKET_H_ */

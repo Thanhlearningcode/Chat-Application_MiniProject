@@ -28,15 +28,15 @@ typedef struct {
 } connect_manager_t;
 
 // Function declarations for server-client communication
-int Create_ServerSocket(int port);
-int Create_ClientSocket(const char *ip, int port);
+int Create_ServerSocket  (int port);
+int Create_ClientSocket  (const char *ip, int port);
 void Accept_NewConnection(int listen_fd);
-void Client_Handler(void);
-void Send_ToClient(char *message, uint32_t client_id);
-void Remove_Client(uint32_t client_id);
-void Remove_AllClients(void);
-void List_AllConnections(void);
-void Get_MyIp(int sock_fd);
+void Client_Handler      (void);
+void Send_ToClient       (char *message, uint32_t client_id);
+void Remove_Client       (uint32_t client_id);
+void Remove_AllClients   (void);
+void List_AllConnections (void);
+void Get_MyIp            (int sock_fd);
 
 
 #endif /* COMMUNICATION_H_ */

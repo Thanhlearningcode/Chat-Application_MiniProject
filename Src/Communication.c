@@ -63,7 +63,7 @@ static void Add_Client(connect_manager_t new_client) {
     if (!added) {
         printf("Danh sách kết nối đầy! Không thể thêm kết nối mới.\n");
     } else {
-        printf("Kết nối đã được thiết lập: ID: %d | IP: %s | Port: %d\n", new_client.client_id, new_client.in_addr, new_client.in_port);
+        printf("Kết nối đã được thiết lập: ID: %d | IP Address: %s | Port No.: %d\n", new_client.client_id, new_client.in_addr, new_client.in_port);
     }
 }
 /**************************************************************************************************
@@ -168,7 +168,7 @@ void Remove_Client(uint32_t client_id) {
                 return;
             }
 
-            printf("Đã đóng kết nối: ID: %d | IP: %s | Port: %d\n", clients_p[i]->client_id, clients_p[i]->in_addr, clients_p[i]->in_port);
+            printf("Đã đóng kết nối: ID: %d | IP Address: %s | Port No.: %d\n", clients_p[i]->client_id, clients_p[i]->in_addr, clients_p[i]->in_port);
             free(clients_p[i]);
             clients_p[i] = NULL;
             id_found = 1;
@@ -192,7 +192,7 @@ void Remove_AllClients(void) {
                 return;
             }
 
-            printf("Đã đóng kết nối: ID: %d | IP: %s | Port: %d\n", clients_p[i]->client_id, clients_p[i]->in_addr, clients_p[i]->in_port);
+            printf("Đã đóng kết nối: ID: %d | IP Address: %s | Port No.: %d\n", clients_p[i]->client_id, clients_p[i]->in_addr, clients_p[i]->in_port);
             free(clients_p[i]);
             clients_p[i] = NULL;
         }
@@ -206,7 +206,7 @@ void List_AllConnections(void) {
     uint8_t is_empty = 1;
     for (int i = 0; i < MAX_CLIENTS; i++) {
         if (clients_p[i] != NULL) {
-            printf("ID Kết nối: %d | IP: %s | Port: %d\n", clients_p[i]->client_id, clients_p[i]->in_addr, clients_p[i]->in_port);
+            printf("ID Kết nối: %d | IP Address: %s | Port No. : %d\n", clients_p[i]->client_id, clients_p[i]->in_addr, clients_p[i]->in_port);
             is_empty = 0;
         }
     }
@@ -231,5 +231,5 @@ void Get_MyIp(int sock_fd) {
     inet_ntop(AF_INET, &local_addr.sin_addr, ip, sizeof(ip));
     int port = ntohs(local_addr.sin_port);
 
-    printf("Socket đã bind vào IP: %s, Port: %d\n", ip, port);   
+    printf("Socket đã bind vào IP Address: %s, Port No.: %d\n", ip, port);
 }

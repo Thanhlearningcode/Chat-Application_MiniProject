@@ -51,9 +51,8 @@ int SIZE = sizeof(commands) / sizeof(commands[0]);
         printf("%d. %-35s : %s\n", i + 1, commands[i].command, commands[i].description);
         i++;
     }
-
     printf("\n Gõ Phím ở đây \n");
 }
 void GoodBye_Custommer (void) {
-    printf("Thanks you for using my service");
+    printf("Thank you for using my service");
 }
