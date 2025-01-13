@@ -53,31 +53,31 @@ Ex : connect 127.0.0.1 8080
 
 2.  Hiển thị thông tin của Server:
 
-Sử dụng lệnh myIp để hiển thị địa chỉ IP của server.
+3.  Sử dụng lệnh myIp để hiển thị địa chỉ IP của server.
 
 $  myIp
 
-Sử dụng lệnh myPort để hiển thị cổng mà server đang
+4.  Sử dụng lệnh myPort để hiển thị cổng mà server đang
 
 $  myPort
 
-Liệt kê các kết nối:
+5.  Liệt kê các kết nối:
 
 Để xem tất cả các kết nối đang hoạt động, sử dụng lệnh list
 
 $  list
 
-Ngắt kết nối Client:
+6. Ngắt kết nối Client:
 
 $  terminate <connection_id>
 
-Gửi tin nhắn đến Client:
+7. Gửi tin nhắn đến Client:
 
 Để gửi tin nhắn đến client có ID cụ thể, sử dụng lệnh send:
 
 $   send <connection_id> <message>
 
-Thoát khỏi Server:
+8. Thoát khỏi Server:
 
 $   exit
 
