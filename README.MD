@@ -30,7 +30,8 @@
 3. Biên dịch ứng dụng:
  $ make
 4. Chạy ứng dụng chat server:
- $  ./chat_app <port> 
+
+   ./chat_app <port> 
 
 Ex : ./chat_app 8080
 
@@ -40,7 +41,7 @@ Ex : ./chat_app 8080
 
 1. Kết nối Client:
 
-connect <server_ip> <port>
+   connect <server_ip> <port>
 
 Ex : connect 127.0.0.1 8080
 
