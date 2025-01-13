@@ -31,7 +31,7 @@
  $ make
 4. Chạy ứng dụng chat server:
 
-   ./chat_app <port> 
+ $  ./chat_app <port> 
 
 ![alt text](image.png)
 
@@ -43,7 +43,7 @@ Ex : ./chat_app 8080
 
 1. Kết nối Client:
 
-   connect <server_ip> <port>
+$  connect <server_ip> <port>
 
 Ex : connect 127.0.0.1 8080
 
@@ -53,31 +53,31 @@ Ex : connect 127.0.0.1 8080
 
 Sử dụng lệnh myIp để hiển thị địa chỉ IP của server.
 
-    myIp
+$  myIp
 
 Sử dụng lệnh myPort để hiển thị cổng mà server đang
 
-    myPort
+$  myPort
 
 Liệt kê các kết nối:
 
 Để xem tất cả các kết nối đang hoạt động, sử dụng lệnh list
 
-    list
+$  list
 
 Ngắt kết nối Client:
 
-    terminate <connection_id>
+$  terminate <connection_id>
 
 Gửi tin nhắn đến Client:
 
 Để gửi tin nhắn đến client có ID cụ thể, sử dụng lệnh send:
 
-send <connection_id> <message>
+$   send <connection_id> <message>
 
 Thoát khỏi Server:
 
-exit
+$   exit
 
 
 
