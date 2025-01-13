@@ -16,7 +16,7 @@
 #include "Display.h"        
 #include <pthread.h>        
 #include <string.h>          /**< String manipulation functions like strtok, strcmp, strcspn */
-#include <stdlib.h>          /**< Standard library for atoi, exit */
+#include <stdlib.h>          /**< Standard library for atoi, exit, atexit */
 #include <unistd.h>    
 #include "Thread.h"
 
@@ -32,8 +32,10 @@ pthread_mutex_t client_list_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 
 int main(int argc, char *argv[]) {
+   //  int port, server_fd;
+
     if (argc < 2) {
-        perror("Exit with error due to incorrect number of arguments\n");
+        printf("Exit with error due to incorrect number of arguments    \n");
         return 1;
     }
 
@@ -42,26 +44,26 @@ int main(int argc, char *argv[]) {
     
     if (server_fd < 0) {
         perror("Failed to create server socket");
-        return 1;
+        return -1;
     }
-
+atexit(GoodBye_Custommer);
 /**
  * @brief Create the thread to accept incoming connections.
  */
  if (CreateAcceptConnectionThread(server_fd) != 0) {
         perror("Failed to create accept connection thread");
-        return 1;
+        return -1;
     }
 /**
  * @brief Create the thread to handle client communication.
  */
     if (CreateClientHandlerThread() != 0) {
         perror("Failed to create client handler thread");
-        return 1;
+        return -1;
     }
     char input[MAX_INPUT_SIZE];  /**< Buffer to store user input */
     DisplayMenu();  /**< Display the menu to the user */
-
+    printf(" Application is listening on port :  %d\n", port);
     while (1) {
         if (fgets(input, sizeof(input), stdin) == NULL) {
             if (feof(stdin)) {
