@@ -27,6 +27,8 @@
 2. Di chuyển vào thư mục dự án:
  $  cd chat-app
  $  git clone https://github.com/Thanhlearningcode/A-Chat-Application-.git
+ Sử dụng chương trình luôn :
+ $  ./chat.exe <port>
 3. Biên dịch ứng dụng:
  $ make
 4. Chạy ứng dụng chat server:
