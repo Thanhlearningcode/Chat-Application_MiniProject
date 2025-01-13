@@ -9,11 +9,11 @@
  * 
  * @param[in] arg Socket của server.
  */
-void *accept_connection_thread(void *arg) {
+void *Accept_ConnectThread (void *arg) {
     int listen_fd = *((int *)arg);   /**< Mô tả socket server */
     
     while (1) {  /**< Vòng lặp vô hạn để liên tục chấp nhận kết nối */
-        Accept_NewConnection(listen_fd);   /**< Chấp nhận kết nối mới từ client */
+        Accept_NewConnection (listen_fd);   /**< Chấp nhận kết nối mới từ client */
     }
 }
 
@@ -22,7 +22,7 @@ void *accept_connection_thread(void *arg) {
  * 
  * @param[in] arg Tham số không sử dụng.
  */
-void *client_handler_thread(void *arg) {
+void *Handle_ClientThread (void *arg) {
     while (1) {  /**< Vòng lặp vô hạn để liên tục xử lý yêu cầu của client */
         Client_Handler();   /**< Xử lý giao tiếp với client */
     }
@@ -37,7 +37,7 @@ void *client_handler_thread(void *arg) {
 int CreateAcceptConnectionThread(int listen_fd) {
     pthread_t accept_thread;  /**< Biến để lưu thông tin của luồng */
     
-    int result = pthread_create(&accept_thread, NULL, accept_connection_thread, &listen_fd);
+    int result = pthread_create(&accept_thread, NULL, Accept_ConnectThread, &listen_fd);
     if (result != 0) {
         perror("Error creating accept connection thread");
 
@@ -56,7 +56,7 @@ int CreateAcceptConnectionThread(int listen_fd) {
 int CreateClientHandlerThread(void) {
     pthread_t handler_thread;  /**< Biến để lưu thông tin của luồng */
     
-    int result = pthread_create(&handler_thread, NULL, client_handler_thread, NULL);
+    int result = pthread_create(&handler_thread, NULL, Handle_ClientThread, NULL);
     if (result != 0) {
         perror("Error creating client handler thread");
 
