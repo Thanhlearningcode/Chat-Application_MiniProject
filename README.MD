@@ -24,5 +24,36 @@
 
 ### Cài Đặt
 1. Clone repository về máy:
-   ```bash
-   git clone https://github.com/Thanhlearningcode/A-Chat-Application-.git
+2. Di chuyển vào thư mục dự án:
+ $  cd chat-app
+ $  git clone https://github.com/Thanhlearningcode/A-Chat-Application-.git
+3. Biên dịch ứng dụng:
+ $ make
+4. Chạy ứng dụng chat server:
+ $  ./chat_app <port> 
+Ex : ./chat_app 8080
+*Chạy Client*
+Để kết nối đến server, bạn có thể chạy client bằng cách sử dụng lệnh connect trong giao diện dòng lệnh:
+1. Kết nối Client:
+connect <server_ip> <port>
+Ex : connect 127.0.0.1 8080
+2.  Hiển thị thông tin của Server:
+Sử dụng lệnh myIp để hiển thị địa chỉ IP của server.
+    myIp
+Sử dụng lệnh myPort để hiển thị cổng mà server đang
+    myPort
+Liệt kê các kết nối:
+Để xem tất cả các kết nối đang hoạt động, sử dụng lệnh list
+    list
+Ngắt kết nối Client:
+    terminate <connection_id>
+Gửi tin nhắn đến Client:
+Để gửi tin nhắn đến client có ID cụ thể, sử dụng lệnh send:
+send <connection_id> <message>
+Thoát khỏi Server:
+exit
+
+
+
+
+
